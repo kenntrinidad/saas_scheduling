@@ -30,3 +30,26 @@ Step 7: Pydantic Schemas + Authentication
 app/schemas/user.py
 app/schemas/staff.py
 app/schemas/client.py
+app/crud/user.py
+
+
+##Update from Claude
+> app/models/user.py
+
+Phase 2 - Staff Scheduling
+done app/models/staff_schedule.py
+done app/schemas/schedule.py
+done app/services/availability.py
+done app/api/v1/availability.py
+
+#Return to Step 7
+update app/models/client.py
+done the Step7
+
+Proceed Phase 3
+
+
+
+
+
+
