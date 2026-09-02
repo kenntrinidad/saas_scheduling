@@ -7,12 +7,13 @@ from app.core.database import Base
 from app.models.staff import Staff
 from app.models.service import Service
 from app.models.client import Client
+from app.models.user import User
 from app.services.booking import create_appointment
 
 
 @pytest.fixture
 def db():
-    engine = create_engine("sqlite:///:memory:")
+    engine = create_engine("sqlite:///:memory:") 
     Base.metadata.create_all(engine)
     SessionLocal = sessionmaker(bind=engine)
     session = SessionLocal()

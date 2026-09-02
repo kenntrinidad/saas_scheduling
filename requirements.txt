@@ -8,3 +8,5 @@ passlib[bcrypt]
 python-multipart
 pydantic-settings
 python-dotenv
+pytest
+pydantic[email]

@@ -5,6 +5,24 @@ venv\Scripts\activate
 pip install -r requirements.txt
 python -m uvicorn app.main:app --reload
 
+# To Test in Pytest
+pytest tests/test_booking.py -v
+
+# To check where running
+netstat -ano | findstr :8000
+
+# Sample Curl
+curl.exe -X POST "http://127.0.0.1:8000/api/v1/auth/register" -H "Content-Type: application/json" -d '{\"email\":\"trinidad@example.com\",\"full_name\":\"rstrinidad\",\"password\":\"12345678\"}'
+
+curl.exe -X POST "http://127.0.0.1:8000/api/v1/auth/login" -H "Content-Type: application/x-www-form-urlencoded" -d "grant_type=password&username=trinidad@example.com&password=12345678"
+
+Token:
+$token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0cmluaWRhZEBleGFtcGxlLmNvbSIsImV4cCI6MTc4ODM0MDEwNX0._QyDVDGB4ol8iq4oMCNspWPk5Op-wejYSsftIAXc73A"
+
+curl.exe -X POST "http://127.0.0.1:8000/api/v1/services" -H "Content-Type: application/json" -H "Authorization: Bearer $token" -d '{\"name\":\"Haircut\",\"duration_minutes\":30,\"price\":200,\"is_active\":true}'
+
+127.0.0.1:8000/docs
+
 Python Version should be 3.12 only
 
 Phase 1

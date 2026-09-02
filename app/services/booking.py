@@ -7,6 +7,11 @@ from app.crud import service as service_crud
 # free up that slot for rebooking.
 ACTIVE_STATUSES = (AppointmentStatus.pending, AppointmentStatus.confirmed, AppointmentStatus.completed)
 
+def _naive(dt: datetime) -> datetime:
+    """Strip timezone info for comparison purposes — this app assumes a
+    single salon timezone throughout, so relative ordering is all that
+    matters here, not absolute UTC offset."""
+    return dt.replace(tzinfo=None) if dt.tzinfo is not None else dt
 
 def _total_duration_minutes(db: Session, service_ids: list[int]) -> int:
     total = 0
@@ -20,9 +25,11 @@ def _total_duration_minutes(db: Session, service_ids: list[int]) -> int:
 
 def _has_conflict(db: Session, *, staff_id: int | None, client_id: int | None,
                    start: datetime, end: datetime, exclude_appointment_id: int | None = None) -> bool:
+    start = _naive(start)
+    end = _naive(end)
+
     query = db.query(Appointment).filter(
         Appointment.status.in_(ACTIVE_STATUSES),
-        Appointment.appointment_date < end,
     )
     if staff_id is not None:
         query = query.filter(Appointment.staff_id == staff_id)
@@ -32,12 +39,13 @@ def _has_conflict(db: Session, *, staff_id: int | None, client_id: int | None,
         query = query.filter(Appointment.id != exclude_appointment_id)
 
     for existing in query.all():
+        existing_start = _naive(existing.appointment_date)
         existing_duration = sum(
             service_crud.get_service(db, link.service_id).duration_minutes
             for link in existing.services
         )
-        existing_end = existing.appointment_date + timedelta(minutes=existing_duration)
-        if existing.appointment_date < end and start < existing_end:
+        existing_end = existing_start + timedelta(minutes=existing_duration)
+        if existing_start < end and start < existing_end:
             return True
     return False
 
