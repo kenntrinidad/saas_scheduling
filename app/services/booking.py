@@ -75,3 +75,8 @@ def create_appointment(db: Session, *, client_id: int, staff_id: int,
     db.commit()
     db.refresh(appointment)
     return appointment
+
+def get_appointment(db: Session, appointment_id: int) -> Appointment | None:
+    return db.query(Appointment).filter(
+        Appointment.id == appointment_id
+    ).first()

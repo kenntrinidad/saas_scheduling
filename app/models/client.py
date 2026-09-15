@@ -9,6 +9,8 @@ class Client(Base):
     full_name = Column(String, nullable=False)
     contacts = Column(String, index=True)
     email = Column(String)
+    preferences = Column(Text)
+    tags = Column(String)
     notes = Column(Text)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
