@@ -14,8 +14,8 @@ export default function Sidebar() {
   return (
     <aside className="w-64 bg-white border-r border-gray-200 p-6 flex flex-col">
       <div className="mb-10">
-        <h1 className="text-xl font-bold text-gray-800">Software As Service</h1>
-        <p className="text-sm text-gray-500 mt-1">Scheduling System for Clinic, Spa, and Beauty Salons</p>
+        <h1 className="text-xl font-bold text-gray-800">Appointment and Scheduling System</h1>
+        <p className="text-sm text-gray-500 mt-1">Scheduling System for Clinic, Spa, Beauty Salons and Barber Shops</p>
       </div>
 
       <nav className="space-y-2 flex-1">

@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: saas-scheduling-api
+    runtime: python
+    region: singapore
+    plan: free
+
+    buildCommand: pip install -r requirements.txt
+
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+
+    healthCheckPath: /docs
+
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.10
+
+      - key: SECRET_KEY
+        generateValue: true
+
+      - key: ALGORITHM
+        value: HS256
+
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: 60
+
+      - key: DATABASE_URL
+        fromDatabase:
+          name: saas-scheduling-db
+          property: connectionString
+
+databases:
+  - name: saas-scheduling-db
+    region: singapore
+    plan: free

@@ -1,0 +1,12 @@
+[
+  "tests/test_booking.py::test_client_double_booking_rejected",
+  "tests/test_booking.py::test_create_appointment_success",
+  "tests/test_booking.py::test_non_overlapping_bookings_both_succeed",
+  "tests/test_booking.py::test_staff_double_booking_rejected",
+  "tests/test_client.py::test_appointment_history_returns_only_this_clients_appointments",
+  "tests/test_client.py::test_search_matches_case_insensitive_partial_name",
+  "tests/test_client.py::test_search_matches_contacts",
+  "tests/test_client.py::test_search_no_match_returns_empty",
+  "tests/test_client.py::test_tag_filter_matches_partial",
+  "tests/test_client.py::test_update_client_preferences_and_tags"
+]
