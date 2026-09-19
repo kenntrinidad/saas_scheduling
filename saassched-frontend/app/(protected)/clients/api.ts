@@ -3,9 +3,10 @@
 // Matches your README API Surface: POST /clients, GET /clients,
 // GET /clients/{id}, PATCH /clients/{id}. No DELETE yet.
 
-import type { Client, CreateClientPayload, UpdateClientPayload } from "./types";
+import type { Client, ClientDTO, CreateClientPayload, UpdateClientPayload } from "./types";
+import { transformClient } from "./types";
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/v1";
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "https://saas-scheduling.onrender.com/api/v1";
 
 function getToken(): string | null {
   if (typeof window === "undefined") return null;
@@ -46,21 +47,31 @@ async function apiFetch<T>(path: string, options: RequestInit = {}): Promise<T> 
 }
 
 export const clientsApi = {
-  list: () => apiFetch<Client[]>("/clients"),
+  list: async () => {
+    const dtos = await apiFetch<ClientDTO[]>("/clients");
+    return dtos.map(transformClient);
+  },
 
-  get: (id: number) => apiFetch<Client>(`/clients/${id}`),
+  get: async (id: number) => {
+    const dto = await apiFetch<ClientDTO>(`/clients/${id}`);
+    return transformClient(dto);
+  },
 
-  create: (payload: CreateClientPayload) =>
-    apiFetch<Client>("/clients", {
+  create: async (payload: CreateClientPayload) => {
+    const dto = await apiFetch<ClientDTO>("/clients", {
       method: "POST",
       body: JSON.stringify(payload),
-    }),
+    });
+    return transformClient(dto);
+  },
 
-  update: (id: number, payload: UpdateClientPayload) =>
-    apiFetch<Client>(`/clients/${id}`, {
+  update: async (id: number, payload: UpdateClientPayload) => {
+    const dto = await apiFetch<ClientDTO>(`/clients/${id}`, {
       method: "PATCH",
       body: JSON.stringify(payload),
-    }),
+    });
+    return transformClient(dto);
+  },
 
   // No delete endpoint yet.
 };

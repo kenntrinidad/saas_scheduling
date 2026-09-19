@@ -41,8 +41,8 @@ export function ClientFormModal({ open, onClose, onSaved, client }: ClientFormMo
     try {
       const payload = {
         full_name: fullName.trim(),
-        email: email.trim(),
-        phone: phone.trim() || undefined,
+        email: email.trim() || undefined,
+        contacts: phone.trim() || undefined,
       };
       if (isEdit && client) {
         await clientsApi.update(client.id, payload);

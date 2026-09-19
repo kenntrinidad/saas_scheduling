@@ -35,7 +35,7 @@ export default function ClientsPage() {
     return clients.filter(
       (c) =>
         c.full_name.toLowerCase().includes(q) ||
-        c.email.toLowerCase().includes(q) ||
+        (c.email ?? "").toLowerCase().includes(q) ||
         (c.phone ?? "").toLowerCase().includes(q)
     );
   }, [clients, search]);
