@@ -2,7 +2,7 @@
 //
 // Confirmed live against app/schemas/payment.py and app/models/payment.py.
 
-export type PaymentMethod = "cash" | "gcash" | "card";
+export type PaymentMethod = "cash" | "gcash" | "card" | "bank_transfer" | "other";
 export type PaymentStatus = "paid" | "refunded";
 
 // --- Raw shape returned by the API (PaymentOut) ---
