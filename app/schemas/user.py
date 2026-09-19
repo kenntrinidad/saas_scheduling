@@ -3,7 +3,7 @@ from typing import Optional
 from datetime import datetime
 
 class UserBase(BaseModel):
-    email:  EmailStr
+    email: EmailStr
     full_name: Optional[str] = None
 
 class UserCreate(UserBase):
@@ -11,13 +11,16 @@ class UserCreate(UserBase):
 
 class UserLogin(BaseModel):
     email: EmailStr
-    password: str 
+    password: str
 
 class UserOut(UserBase):
-    id: int
+    id: str
+    username: Optional[str] = None
     is_active: bool
     is_owner: bool
-    created_at: datetime
+    role: Optional[str] = None
+    status: Optional[str] = None
+    created_at: Optional[datetime] = None
 
     class Config:
         from_attributes = True
