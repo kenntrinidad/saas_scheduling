@@ -26,3 +26,8 @@ def decode_access_token(token: str) -> str | None:
         return payload.get("sub")
     except JWTError:
         return None
+
+
+def get_password_hash(password: str) -> str:
+    # bcrypt only supports up to 72 bytes
+    return pwd_context.hash(password[:72])
