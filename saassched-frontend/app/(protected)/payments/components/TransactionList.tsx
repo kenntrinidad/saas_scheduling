@@ -15,6 +15,8 @@ const METHOD_COLOR: Record<PaymentMethod, string> = {
   cash: "#1D5F55",
   gcash: "#7C5CBF",
   card: "#2563A8",
+  bank_transfer: "#0F766E",
+  other: "#6B7280",
 };
 
 interface TransactionListProps {
