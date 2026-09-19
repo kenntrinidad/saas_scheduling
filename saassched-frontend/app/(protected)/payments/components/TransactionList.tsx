@@ -3,10 +3,12 @@
 
 import type { Payment, PaymentMethod } from "../types";
 
-const METHOD_LABEL: Record<PaymentMethod, string> = {
+const METHOD_LABELS: Record<PaymentMethod, string> = {
   cash: "Cash",
   gcash: "GCash",
   card: "Card",
+  bank_transfer: "Bank Transfer",
+  other: "Other",
 };
 
 const METHOD_COLOR: Record<PaymentMethod, string> = {
