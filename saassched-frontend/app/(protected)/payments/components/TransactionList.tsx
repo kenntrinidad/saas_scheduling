@@ -7,8 +7,6 @@ const METHOD_LABELS: Record<PaymentMethod, string> = {
   cash: "Cash",
   gcash: "GCash",
   card: "Card",
-  bank_transfer: "Bank Transfer",
-  other: "Other",
 };
 
 const METHOD_COLOR: Record<PaymentMethod, string> = {
@@ -55,7 +53,7 @@ export function TransactionList({ payments }: TransactionListProps) {
           <div className="text-right shrink-0">
             <p className="text-sm font-semibold text-neutral-800">₱{p.amount.toLocaleString()}</p>
             <p className="text-xs text-neutral-400">
-              {METHOD_LABEL[p.method]} ·{" "}
+              {METHOD_LABELS[p.method]} ·{" "}
               {new Date(p.paid_at).toLocaleDateString(undefined, { month: "short", day: "numeric" })}
             </p>
           </div>
