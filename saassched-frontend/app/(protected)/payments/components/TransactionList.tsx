@@ -7,7 +7,9 @@ const METHOD_LABELS: Record<PaymentMethod, string> = {
   cash: "Cash",
   gcash: "GCash",
   card: "Card",
-};
+  bank_transfer: "Bank Transfer",
+  other: "Other",
+}
 
 const METHOD_COLOR: Record<PaymentMethod, string> = {
   cash: "#1D5F55",
