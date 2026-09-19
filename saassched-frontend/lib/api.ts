@@ -1,11 +1,11 @@
-const API_URL = "http://127.0.0.1:8000/api/v1";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api/v1";
 
 export async function apiFetch(endpoint: string, options: RequestInit = {}) {
-  const token = localStorage.getItem("token");
+  const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
-  const headers: HeadersInit = {
+  const headers: Record<string, string> = {
     "Content-Type": "application/json",
-    ...options.headers,
+    ...(options.headers as Record<string, string>),
   };
 
   if (token) {
