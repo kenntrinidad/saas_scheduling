@@ -14,13 +14,13 @@ class UserLogin(BaseModel):
     password: str
 
 class UserOut(UserBase):
-    id: str
-    username: Optional[str] = None
+    id: int                          # ← change from str to int
     is_active: bool
     is_owner: bool
-    role: Optional[str] = None
-    status: Optional[str] = None
-    created_at: Optional[datetime] = None
+    created_at: datetime | None = None
+
+    class Config:
+        from_attributes = True
 
     class Config:
         from_attributes = True
