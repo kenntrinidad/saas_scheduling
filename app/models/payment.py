@@ -26,4 +26,3 @@ class Payment(Base):
     status = Column(Enum(PaymentStatus), default=PaymentStatus.paid, nullable=False)
     notes = Column(Text, nullable=True)
     paid_at = Column(DateTime(timezone=True), server_default=func.now())
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
