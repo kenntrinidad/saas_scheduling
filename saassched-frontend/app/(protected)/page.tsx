@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from "react";
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL?.replace(/\/api\/v1$/, "") || "http://127.0.0.1:8000";
+
 export default function DashboardPage() {
   const [message, setMessage] = useState("Loading...");
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/")
+    fetch(`${API_BASE}/`)
       .then((res) => res.json())
       .then((data) => setMessage(data.message))
       .catch(() => setMessage("Cannot connect to backend"));
