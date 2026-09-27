@@ -1,4 +1,7 @@
 [
+  "tests/test_auth.py::test_reset_password_is_in_swagger_and_requires_bearer_auth",
+  "tests/test_auth.py::test_reset_password_rejects_incorrect_current_password",
+  "tests/test_auth.py::test_reset_password_updates_authenticated_users_password",
   "tests/test_booking.py::test_client_double_booking_rejected",
   "tests/test_booking.py::test_create_appointment_success",
   "tests/test_booking.py::test_non_overlapping_bookings_both_succeed",

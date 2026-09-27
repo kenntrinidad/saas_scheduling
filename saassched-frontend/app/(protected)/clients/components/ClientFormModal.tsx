@@ -1,7 +1,7 @@
 // app/(protected)/clients/components/ClientFormModal.tsx
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { clientsApi } from "../api";
 import type { Client } from "../types";
 
@@ -16,19 +16,11 @@ interface ClientFormModalProps {
 export function ClientFormModal({ open, onClose, onSaved, client }: ClientFormModalProps) {
   const isEdit = Boolean(client);
 
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [fullName, setFullName] = useState(() => client?.full_name ?? "");
+  const [email, setEmail] = useState(() => client?.email ?? "");
+  const [phone, setPhone] = useState(() => client?.phone ?? "");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (!open) return;
-    setFullName(client?.full_name ?? "");
-    setEmail(client?.email ?? "");
-    setPhone(client?.phone ?? "");
-    setError(null);
-  }, [open, client]);
 
   if (!open) return null;
 

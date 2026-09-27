@@ -26,7 +26,22 @@ export default function ClientsPage() {
   }
 
   useEffect(() => {
-    refresh();
+    let active = true;
+    clientsApi
+      .list()
+      .then((items) => {
+        if (active) setClients(items);
+      })
+      .catch(() => {
+        if (active) setLoadError("Couldn't load clients. Check your connection and try again.");
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   const filtered = useMemo(() => {
@@ -34,7 +49,7 @@ export default function ClientsPage() {
     if (!q) return clients;
     return clients.filter(
       (c) =>
-        c.full_name.toLowerCase().includes(q) ||
+        (c.full_name ?? "").toLowerCase().includes(q) ||
         (c.email ?? "").toLowerCase().includes(q) ||
         (c.phone ?? "").toLowerCase().includes(q)
     );
@@ -96,12 +111,15 @@ export default function ClientsPage() {
         <div className="h-8" />
       </div>
 
-      <ClientFormModal
-        open={modalOpen}
-        onClose={() => setModalOpen(false)}
-        onSaved={refresh}
-        client={editingClient}
-      />
+      {modalOpen && (
+        <ClientFormModal
+          key={editingClient?.id ?? "new"}
+          open={modalOpen}
+          onClose={() => setModalOpen(false)}
+          onSaved={refresh}
+          client={editingClient}
+        />
+      )}
     </div>
   );
 }

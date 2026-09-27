@@ -3,10 +3,10 @@
 // Matches your README API Surface: POST /clients, GET /clients,
 // GET /clients/{id}, PATCH /clients/{id}. No DELETE yet.
 
-import type { Client, ClientDTO, CreateClientPayload, UpdateClientPayload } from "./types";
+import type { ClientDTO, CreateClientPayload, UpdateClientPayload } from "./types";
 import { transformClient } from "./types";
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "https://saas-scheduling.onrender.com/api/v1";
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/v1";
 
 function getToken(): string | null {
   if (typeof window === "undefined") return null;
