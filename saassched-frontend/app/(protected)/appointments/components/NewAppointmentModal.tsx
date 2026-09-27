@@ -107,7 +107,7 @@ export function NewAppointmentModal({
         // The API gives back bare times ("09:00:00"), not dated timestamps —
         // combine with the picked date ourselves before submitting. Field
         // name confirmed from app/schemas/appointment.py: `appointment_date`.
-        appointment_date: `${date}T${selectedSlot}`,
+        appointment_date: `${date}T${selectedSlot}+08:00`,
       });
       onCreated();
       onClose();
@@ -224,7 +224,7 @@ export function NewAppointmentModal({
                       {formatTimeLabel(slot.start)}
                     </button>
                   );
-                })}
+                })} 
               </div>
             )}
           </Field>
