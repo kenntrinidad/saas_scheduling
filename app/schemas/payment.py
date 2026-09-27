@@ -26,8 +26,7 @@ class PaymentOut(BaseModel):
     status: PaymentStatus
     notes: Optional[str]
     paid_at: datetime
-    created_at: datetime
-
+    #created_at: datetime ni remove ko ito muna error in payment
     class Config:
         from_attributes = True
 

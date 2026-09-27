@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field
 from typing import Optional
 from datetime import datetime
 
@@ -12,6 +12,10 @@ class UserCreate(UserBase):
 class UserLogin(BaseModel):
     email: EmailStr
     password: str
+
+class PasswordResetRequest(BaseModel):
+    current_password: str
+    new_password: str = Field(min_length=8)
 
 class UserOut(UserBase):
     id: int                          # ← change from str to int

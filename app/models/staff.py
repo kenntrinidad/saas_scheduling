@@ -2,11 +2,12 @@ from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, DateTime
 from sqlalchemy.sql import func
 from app.core.database import Base
 
+
 class Staff(Base):
     __tablename__ = "staff"
 
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("saas_sched.users.id"), nullable=False)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=True)  # changed
     full_name = Column(String, nullable=False)
     contact = Column(String)
     email = Column(String)

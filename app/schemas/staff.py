@@ -11,7 +11,7 @@ class StaffBase(BaseModel):
 
 
 class StaffCreate(StaffBase):
-    user_id: int
+    user_id: Optional[int] = None          # ← changed to optional
 
 
 class StaffUpdate(BaseModel):
@@ -20,11 +20,12 @@ class StaffUpdate(BaseModel):
     email: Optional[EmailStr] = None
     social_media_link: Optional[str] = None
     is_active: Optional[bool] = None
+    user_id: Optional[int] = None
 
 
 class StaffOut(StaffBase):
     id: int
-    user_id: int
+    user_id: Optional[int] = None          # ← changed to optional
     is_active: bool
     created_at: datetime
 
