@@ -13,6 +13,8 @@ from app.api.v1 import (
     appointments,
     payments,
     reports,
+    health,
+    dashboard,
 )
 
 Base.metadata.create_all(bind=engine)
@@ -23,7 +25,6 @@ app = FastAPI(
     version="0.1.0"
 )
 
-# CORS – allow local development + Vercel production
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -35,7 +36,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Routers
+app.include_router(health.router, prefix="/api/v1", tags=["Health"])
 app.include_router(auth.router, prefix="/api/v1/auth", tags=["Auth"])
 app.include_router(availability.router, prefix="/api/v1", tags=["Availability"])
 app.include_router(services.router, prefix="/api/v1", tags=["Services"])
@@ -45,6 +46,7 @@ app.include_router(schedule.router, prefix="/api/v1", tags=["Schedule"])
 app.include_router(appointments.router, prefix="/api/v1", tags=["Appointments"])
 app.include_router(payments.router, prefix="/api/v1", tags=["Payments"])
 app.include_router(reports.router, prefix="/api/v1", tags=["Reports"])
+app.include_router(dashboard.router, prefix="/api/v1", tags=["Dashboard"])
 
 
 @app.get("/")
