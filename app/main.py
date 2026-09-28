@@ -31,6 +31,7 @@ app.add_middleware(
         "http://localhost:3000",
         "https://saas-scheduling.vercel.app",
     ],
+    allow_origin_regex=r"https://saas-scheduling[a-z0-9-]*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
