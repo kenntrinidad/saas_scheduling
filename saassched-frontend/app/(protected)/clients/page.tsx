@@ -68,25 +68,25 @@ export default function ClientsPage() {
   return (
     <div className="bg-[#FAFAF8]">
       <div className="max-w-4xl mx-auto">
-        <header className="px-6 pt-6 pb-4 flex flex-wrap items-center justify-between gap-3">
-          <h1 className="font-[Manrope] text-2xl font-bold text-neutral-900">Clients</h1>
+        <header className="px-3 pt-3 pb-4 flex flex-wrap items-center justify-between gap-3 sm:px-6 sm:pt-6">
+          <h1 className="hidden font-[Manrope] text-2xl font-bold text-neutral-900 md:block">Clients</h1>
           <button
             onClick={openAdd}
-            className="px-4 py-2 rounded-lg text-sm font-medium text-white bg-[#1D5F55] hover:bg-[#164A42] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D5F55]"
+            className="min-h-11 px-4 py-2 rounded-lg text-sm font-medium text-white bg-[#1D5F55] hover:bg-[#164A42] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D5F55]"
           >
             + Add client
           </button>
         </header>
 
-        <div className="bg-white rounded-t-xl border border-neutral-200 mx-4">
-          <div className="px-6 py-3 border-b border-neutral-200">
+        <div className="bg-white rounded-xl border border-neutral-200 mx-1 sm:mx-4">
+          <div className="px-3 py-3 border-b border-neutral-200 sm:px-6">
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search by name, email, or phone…"
               aria-label="Search clients"
-              className="w-full max-w-sm rounded-lg border border-neutral-300 bg-white text-neutral-900 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1D5F55]"
+              className="min-h-11 w-full max-w-sm rounded-lg border border-neutral-300 bg-white text-neutral-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1D5F55]"
             />
           </div>
 

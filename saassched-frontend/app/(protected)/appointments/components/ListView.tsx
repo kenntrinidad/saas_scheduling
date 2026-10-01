@@ -61,7 +61,7 @@ export function ListView({ appointments, onSelectAppointment }: ListViewProps) {
               <li key={appt.id}>
                 <button
                   onClick={() => onSelectAppointment?.(appt)}
-                  className="w-full flex items-center justify-between gap-3 rounded-lg px-3 py-2 hover:bg-neutral-50 transition-colors text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#1D5F55]"
+                  className="w-full min-h-11 flex items-center justify-between gap-3 rounded-lg px-3 py-2 hover:bg-neutral-50 transition-colors text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#1D5F55]"
                 >
                   <div className="flex items-center gap-3 min-w-0">
                     <span
@@ -71,7 +71,7 @@ export function ListView({ appointments, onSelectAppointment }: ListViewProps) {
                     />
                     <div className="min-w-0">
                       <p className="text-sm font-medium text-neutral-800 truncate">{appt.client_name}</p>
-                      <p className="text-xs text-neutral-500 truncate">{appt.service_name}</p>
+                      <p className="text-sm text-neutral-500 truncate">{appt.service_name}</p>
                     </div>
                   </div>
                   <div className="text-right shrink-0">
@@ -81,7 +81,7 @@ export function ListView({ appointments, onSelectAppointment }: ListViewProps) {
                         minute: "2-digit",
                       })}
                     </p>
-                    <p className="text-xs text-neutral-400">{STATUS_LABEL[appt.status]}</p>
+                    <p className="text-sm text-neutral-500">{STATUS_LABEL[appt.status]}</p>
                   </div>
                 </button>
               </li>

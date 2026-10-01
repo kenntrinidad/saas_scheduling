@@ -120,14 +120,14 @@ export function NewAppointmentModal({
 
   return (
     <div
-      className="fixed inset-0 bg-black/30 flex items-center justify-center p-4 z-50"
+      className="fixed inset-0 bg-black/30 flex items-end justify-center p-0 z-50 sm:items-center sm:p-4"
       role="dialog"
       aria-modal="true"
       aria-labelledby="new-appt-title"
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-xl shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto"
+        className="bg-white rounded-t-xl shadow-xl w-full max-w-md max-h-[94dvh] overflow-y-auto sm:rounded-xl sm:max-h-[90vh]"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="px-6 py-4 border-b border-neutral-200 flex items-center justify-between">
@@ -137,13 +137,13 @@ export function NewAppointmentModal({
           <button
             onClick={onClose}
             aria-label="Close"
-            className="text-neutral-400 hover:text-neutral-600 text-xl leading-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#1D5F55]"
+            className="flex size-11 items-center justify-center rounded-lg text-neutral-500 hover:bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#1D5F55]"
           >
             ×
           </button>
         </div>
 
-        <div className="px-6 py-4 space-y-4">
+        <div className="px-4 py-4 space-y-4 sm:px-6">
           <Field label="Client">
             <select
               value={clientId}
@@ -215,7 +215,7 @@ export function NewAppointmentModal({
                     <button
                       key={slot.start}
                       onClick={() => setSelectedSlot(slot.start)}
-                      className={`rounded-lg border px-2 py-1.5 text-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#1D5F55] ${
+                      className={`min-h-11 rounded-lg border px-2 py-2 text-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#1D5F55] ${
                         active
                           ? "bg-[#1D5F55] border-[#1D5F55] text-white"
                           : "border-neutral-300 text-neutral-700 hover:border-[#1D5F55]"

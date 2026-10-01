@@ -61,13 +61,13 @@ export function RecordPaymentModal({ open, onClose, onRecorded, clients }: Recor
 
   return (
     <div
-      className="fixed inset-0 bg-black/30 flex items-center justify-center p-4 z-50"
+      className="fixed inset-0 bg-black/30 flex items-end justify-center p-0 z-50 sm:items-center sm:p-4"
       role="dialog"
       aria-modal="true"
       aria-labelledby="record-payment-title"
       onClick={onClose}
     >
-      <div className="bg-white rounded-xl shadow-xl w-full max-w-sm" onClick={(e) => e.stopPropagation()}>
+      <div className="bg-white rounded-t-xl shadow-xl w-full max-w-sm max-h-[94dvh] overflow-y-auto sm:rounded-xl" onClick={(e) => e.stopPropagation()}>
         <div className="px-6 py-4 border-b border-neutral-200 flex items-center justify-between">
           <h2 id="record-payment-title" className="text-base font-semibold text-neutral-800">
             Record payment
@@ -75,13 +75,13 @@ export function RecordPaymentModal({ open, onClose, onRecorded, clients }: Recor
           <button
             onClick={onClose}
             aria-label="Close"
-            className="text-neutral-400 hover:text-neutral-600 text-xl leading-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#1D5F55]"
+            className="flex size-11 items-center justify-center rounded-lg text-neutral-500 hover:bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#1D5F55]"
           >
             ×
           </button>
         </div>
 
-        <div className="px-6 py-4 space-y-4">
+        <div className="px-4 py-4 space-y-4 sm:px-6">
           <Field label="Client">
             <select
               value={clientId}
@@ -97,7 +97,7 @@ export function RecordPaymentModal({ open, onClose, onRecorded, clients }: Recor
             </select>
           </Field>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <Field label="Amount (₱)">
               <input
                 type="number"
@@ -135,17 +135,17 @@ export function RecordPaymentModal({ open, onClose, onRecorded, clients }: Recor
           {error && <p className="text-sm text-red-600">{error}</p>}
         </div>
 
-        <div className="px-6 py-4 border-t border-neutral-200 flex justify-end gap-2">
+        <div className="px-4 py-4 border-t border-neutral-200 flex flex-wrap justify-end gap-2 sm:px-6">
           <button
             onClick={onClose}
-            className="px-4 py-2 text-sm font-medium text-neutral-600 hover:text-neutral-800"
+            className="min-h-11 px-4 py-2 text-sm font-medium text-neutral-600 hover:text-neutral-800"
           >
             Cancel
           </button>
           <button
             onClick={handleSubmit}
             disabled={!canSubmit}
-            className="px-4 py-2 rounded-lg text-sm font-medium text-white bg-[#1D5F55] hover:bg-[#164A42] disabled:opacity-40 disabled:cursor-not-allowed transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D5F55]"
+            className="min-h-11 px-4 py-2 rounded-lg text-sm font-medium text-white bg-[#1D5F55] hover:bg-[#164A42] disabled:opacity-40 disabled:cursor-not-allowed transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D5F55]"
           >
             {submitting ? "Recording…" : "Record payment"}
           </button>

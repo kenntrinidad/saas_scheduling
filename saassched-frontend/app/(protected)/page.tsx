@@ -111,9 +111,9 @@ export default function DashboardPage() {
 
   return (
     <div className="bg-[#FAFAF8] min-h-screen">
-      <div className="max-w-5xl mx-auto px-6 py-6">
-        <header className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold text-neutral-900">Dashboard</h1>
+      <div className="max-w-5xl mx-auto px-2 py-4 sm:px-6 sm:py-6">
+        <header className="flex items-center justify-between gap-3 mb-6">
+          <h1 className="hidden text-2xl font-bold text-neutral-900 md:block">Dashboard</h1>
           <StatusBadge status={status} />
         </header>
 
@@ -167,7 +167,7 @@ export default function DashboardPage() {
                   <button
                     key={r}
                     onClick={() => setEarningsRange(r)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                    className={`min-h-11 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                       earningsRange === r
                         ? "bg-[#1D5F55] text-white"
                         : "border border-neutral-300 text-neutral-600 hover:bg-neutral-50"
@@ -179,28 +179,28 @@ export default function DashboardPage() {
               </div>
 
               {earningsRange === "custom" && (
-                <div className="flex flex-wrap items-end gap-3 mb-4">
-                  <label className="text-xs">
+                <div className="mb-4 flex flex-col items-stretch gap-3 min-[400px]:flex-row min-[400px]:flex-wrap min-[400px]:items-end">
+                  <label className="w-full text-sm min-[400px]:w-auto">
                     <span className="block text-neutral-500 mb-1">Start date</span>
                     <input
                       type="date"
                       value={customStart}
                       onChange={(e) => setCustomStart(e.target.value)}
-                      className="rounded-lg border border-neutral-300 px-3 py-1.5 text-sm"
+                      className="min-h-11 w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm min-[400px]:w-auto"
                     />
                   </label>
-                  <label className="text-xs">
+                  <label className="w-full text-sm min-[400px]:w-auto">
                     <span className="block text-neutral-500 mb-1">End date</span>
                     <input
                       type="date"
                       value={customEnd}
                       onChange={(e) => setCustomEnd(e.target.value)}
-                      className="rounded-lg border border-neutral-300 px-3 py-1.5 text-sm"
+                      className="min-h-11 w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm min-[400px]:w-auto"
                     />
                   </label>
                   <button
                     onClick={runCustomEarningsSearch}
-                    className="px-4 py-1.5 rounded-lg text-sm font-medium text-white bg-[#1D5F55] hover:bg-[#164A42]"
+                    className="min-h-11 px-4 py-2 rounded-lg text-sm font-medium text-white bg-[#1D5F55] hover:bg-[#164A42]"
                   >
                     Search
                   </button>

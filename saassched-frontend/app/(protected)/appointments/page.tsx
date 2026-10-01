@@ -132,37 +132,37 @@ export default function AppointmentsPage() {
       {/* This renders inside your existing (protected)/layout.tsx, alongside Sidebar.
           Drop the outer min-h-screen/bg here if your layout already sets that. */}
       <div className="max-w-6xl mx-auto">
-        <header className="px-6 pt-6 pb-4 flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <h1 className="font-[Manrope] text-2xl font-bold text-neutral-900">Appointments</h1>
+        <header className="flex flex-col items-stretch gap-3 px-3 pt-3 pb-4 sm:px-6 sm:pt-6 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex flex-wrap items-center justify-between gap-2 sm:justify-start sm:gap-3">
+            <h1 className="hidden font-[Manrope] text-2xl font-bold text-neutral-900 md:block">Appointments</h1>
             <div className="flex items-center gap-1 text-sm text-neutral-500">
               <button
                 onClick={() => shiftDate(-1)}
                 aria-label="Previous"
-                className="w-7 h-7 flex items-center justify-center rounded-md hover:bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#1D5F55]"
+                className="flex size-11 items-center justify-center rounded-md hover:bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#1D5F55]"
               >
                 ‹
               </button>
-              <span className="min-w-[9rem] text-center font-medium text-neutral-700">
+              <span className="min-w-0 text-center text-sm font-medium text-neutral-700 sm:min-w-[9rem]">
                 {formatRangeLabel(view, refDate)}
               </span>
               <button
                 onClick={() => shiftDate(1)}
                 aria-label="Next"
-                className="w-7 h-7 flex items-center justify-center rounded-md hover:bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#1D5F55]"
+                className="flex size-11 items-center justify-center rounded-md hover:bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#1D5F55]"
               >
                 ›
               </button>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <div className="flex rounded-lg border border-neutral-200 p-0.5 bg-white">
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="flex min-w-0 flex-1 rounded-lg border border-neutral-200 p-0.5 bg-white sm:flex-none">
               {(["day", "week", "list"] as ViewMode[]).map((v) => (
                 <button
                   key={v}
                   onClick={() => setView(v)}
-                  className={`px-3 py-1.5 rounded-md text-sm font-medium capitalize transition-colors ${
+                  className={`min-h-11 flex-1 px-2 py-2 rounded-md text-sm font-medium capitalize transition-colors sm:flex-none sm:px-3 ${
                     view === v ? "bg-[#1D5F55] text-white" : "text-neutral-600 hover:bg-neutral-100"
                   }`}
                 >
@@ -172,14 +172,14 @@ export default function AppointmentsPage() {
             </div>
             <button
               onClick={() => setModalOpen(true)}
-              className="px-4 py-2 rounded-lg text-sm font-medium text-white bg-[#1D5F55] hover:bg-[#164A42] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D5F55]"
+              className="min-h-11 flex-1 px-4 py-2 rounded-lg text-sm font-medium text-white bg-[#1D5F55] hover:bg-[#164A42] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D5F55] sm:flex-none"
             >
               + New appointment
             </button>
           </div>
         </header>
 
-        <div className="bg-white rounded-t-xl border border-neutral-200 mx-4">
+        <div className="bg-white rounded-xl border border-neutral-200 mx-1 sm:mx-4">
           <StaffFilter staff={staff} selectedId={selectedStaff} onSelect={setSelectedStaff} />
 
           {loadingAppointments ? (
@@ -199,12 +199,19 @@ export default function AppointmentsPage() {
           ) : (
             <>
               {view === "day" && (
+                <>
+                <div className="hidden md:block">
                 <DayGrid
                   date={refDate}
                   staff={visibleStaff}
                   appointments={visibleAppointments}
                   onSelectAppointment={setSelectedAppt}
                 />
+                </div>
+                <div className="md:hidden">
+                  <ListView appointments={visibleAppointments} onSelectAppointment={setSelectedAppt} />
+                </div>
+                </>
               )}
               {view === "week" && (
                 <WeekGrid
@@ -291,12 +298,12 @@ function AppointmentDetail({
 
   return (
     <div
-      className="fixed inset-0 bg-black/30 flex items-center justify-center p-4 z-50"
+      className="fixed inset-0 bg-black/30 flex items-end justify-center p-0 z-50 sm:items-center sm:p-4"
       role="dialog"
       aria-modal="true"
       onClick={onClose}
     >
-      <div className="bg-white rounded-xl shadow-xl w-full max-w-sm p-6" onClick={(e) => e.stopPropagation()}>
+      <div className="bg-white rounded-t-xl shadow-xl w-full max-w-sm max-h-[94dvh] overflow-y-auto p-4 sm:rounded-xl sm:p-6" onClick={(e) => e.stopPropagation()}>
         <h2 className="text-base font-semibold text-neutral-800 mb-1">{appt.client_name}</h2>
         <p className="text-sm text-neutral-500 mb-4">{appt.service_name}</p>
         <dl className="space-y-2 text-sm">
@@ -329,7 +336,7 @@ function AppointmentDetail({
                   key={status}
                   onClick={() => handleStatusChange(status)}
                   disabled={updating !== null}
-                  className="px-3 py-1.5 rounded-lg text-sm font-medium border border-neutral-300 text-neutral-700 hover:border-[#1D5F55] hover:text-[#1D5F55] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                  className="min-h-11 px-3 py-2 rounded-lg text-sm font-medium border border-neutral-300 text-neutral-700 hover:border-[#1D5F55] hover:text-[#1D5F55] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                 >
                   {updating === status ? "Saving…" : `Mark ${STATUS_LABEL[status]}`}
                 </button>
@@ -341,7 +348,7 @@ function AppointmentDetail({
 
         <button
           onClick={onClose}
-          className="mt-5 w-full px-4 py-2 rounded-lg text-sm font-medium text-neutral-600 border border-neutral-300 hover:bg-neutral-50"
+          className="mt-5 min-h-11 w-full px-4 py-2 rounded-lg text-sm font-medium text-neutral-600 border border-neutral-300 hover:bg-neutral-50"
         >
           Close
         </button>

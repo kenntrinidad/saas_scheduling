@@ -31,17 +31,17 @@ export function ServiceMenuList({ services }: ServiceMenuListProps) {
   return (
     <ul className="divide-y divide-neutral-100">
       {services.map((service) => (
-        <li key={service.id} className="flex items-center justify-between gap-4 px-6 py-4">
-          <div className="min-w-0 flex items-center gap-2">
-            <span className="text-[15px] font-medium text-neutral-800 truncate">{service.name}</span>
+        <li key={service.id} className="flex items-center justify-between gap-3 px-3 py-4 sm:gap-4 sm:px-6">
+          <div className="flex min-w-0 items-start gap-2">
+            <span className="break-words text-[15px] font-medium text-neutral-800">{service.name}</span>
             {!service.is_active && (
               <span className="shrink-0 rounded-full bg-neutral-100 text-neutral-500 text-xs font-medium px-2 py-0.5">
                 Inactive
               </span>
             )}
           </div>
-          <div className="flex items-baseline gap-3 shrink-0 text-sm">
-            <span className="text-neutral-400">{formatDuration(service.duration_minutes)}</span>
+          <div className="flex shrink-0 flex-col items-end gap-1 text-sm sm:flex-row sm:items-baseline sm:gap-3">
+            <span className="text-neutral-500">{formatDuration(service.duration_minutes)}</span>
             <span className="font-semibold text-neutral-800">{formatPrice(service.price)}</span>
           </div>
         </li>

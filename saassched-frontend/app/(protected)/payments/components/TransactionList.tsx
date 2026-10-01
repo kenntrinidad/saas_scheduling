@@ -38,7 +38,7 @@ export function TransactionList({ payments }: TransactionListProps) {
   return (
     <ul className="divide-y divide-neutral-100">
       {sorted.map((p) => (
-        <li key={p.id} className="flex items-center justify-between gap-4 px-6 py-3">
+        <li key={p.id} className="flex items-center justify-between gap-2 px-3 py-3 sm:gap-4 sm:px-6">
           <div className="min-w-0 flex items-center gap-3">
             <span
               aria-hidden="true"
@@ -48,7 +48,7 @@ export function TransactionList({ payments }: TransactionListProps) {
             <div className="min-w-0">
               <p className="text-sm font-medium text-neutral-800 truncate">{p.client_name}</p>
               {p.notes ? (
-                <p className="text-xs text-neutral-500 truncate">{p.notes}</p>
+                <p className="text-sm text-neutral-500 truncate">{p.notes}</p>
               ) : p.status === "refunded" ? (
                 <p className="text-xs text-red-600">Refunded</p>
               ) : null}
@@ -56,7 +56,7 @@ export function TransactionList({ payments }: TransactionListProps) {
           </div>
           <div className="text-right shrink-0">
             <p className="text-sm font-semibold text-neutral-800">₱{p.amount.toLocaleString()}</p>
-            <p className="text-xs text-neutral-400">
+            <p className="text-xs text-neutral-500 sm:text-sm">
               {METHOD_LABELS[p.method]} ·{" "}
               {new Date(p.paid_at).toLocaleDateString(undefined, { month: "short", day: "numeric" })}
             </p>

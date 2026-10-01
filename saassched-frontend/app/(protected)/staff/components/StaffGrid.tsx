@@ -41,7 +41,7 @@ export function StaffGrid({ staff, onSelect, onSchedule }: StaffGridProps) {
         >
           <button
             onClick={() => onSelect(member)}
-            className="w-full text-left p-4 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#1D5F55]"
+            className="min-h-11 w-full text-left p-4 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#1D5F55]"
           >
             <div className="flex items-start justify-between gap-2">
               <div
@@ -63,7 +63,7 @@ export function StaffGrid({ staff, onSelect, onSchedule }: StaffGridProps) {
           </button>
           <button
             onClick={() => onSchedule(member)}
-            className="w-full border-t border-neutral-100 px-4 py-2 text-xs font-medium text-neutral-500 hover:text-[#1D5F55] hover:bg-neutral-50 transition-colors text-left focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#1D5F55]"
+            className="w-full min-h-11 border-t border-neutral-100 px-4 py-2 text-sm font-medium text-neutral-500 hover:text-[#1D5F55] hover:bg-neutral-50 transition-colors text-left focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#1D5F55]"
           >
             Set schedule →
           </button>

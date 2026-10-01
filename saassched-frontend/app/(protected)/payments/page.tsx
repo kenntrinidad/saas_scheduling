@@ -41,17 +41,17 @@ export default function PaymentsPage() {
   return (
     <div className="bg-[#FAFAF8]">
       <div className="max-w-3xl mx-auto">
-        <header className="px-6 pt-6 pb-4 flex flex-wrap items-center justify-between gap-3">
-          <h1 className="font-[Manrope] text-2xl font-bold text-neutral-900">Payments</h1>
+        <header className="px-3 pt-3 pb-4 flex flex-wrap items-center justify-between gap-3 sm:px-6 sm:pt-6">
+          <h1 className="hidden font-[Manrope] text-2xl font-bold text-neutral-900 md:block">Payments</h1>
           <button
             onClick={() => setModalOpen(true)}
-            className="px-4 py-2 rounded-lg text-sm font-medium text-white bg-[#1D5F55] hover:bg-[#164A42] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D5F55]"
+            className="min-h-11 px-4 py-2 rounded-lg text-sm font-medium text-white bg-[#1D5F55] hover:bg-[#164A42] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D5F55]"
           >
             + Record payment
           </button>
         </header>
 
-        <div className="bg-white rounded-t-xl border border-neutral-200 mx-4">
+        <div className="bg-white rounded-xl border border-neutral-200 mx-1 sm:mx-4">
           {loading ? (
             <div className="flex items-center justify-center h-64 text-sm text-neutral-500">
               Loading payments…

@@ -14,13 +14,13 @@ export function StaffFilter({ staff, selectedId, onSelect }: StaffFilterProps) {
     <div
       role="tablist"
       aria-label="Filter by staff"
-      className="flex flex-wrap gap-2 px-6 py-3 border-b border-neutral-200"
+      className="flex gap-2 overflow-x-auto px-3 py-2 border-b border-neutral-200 sm:flex-wrap sm:px-6 sm:py-3"
     >
       <button
         role="tab"
         aria-selected={selectedId === "all"}
         onClick={() => onSelect("all")}
-        className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D5F55] ${
+        className={`min-h-11 shrink-0 px-3 py-2 rounded-full text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D5F55] ${
           selectedId === "all"
             ? "bg-[#1D5F55] text-white"
             : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
@@ -36,7 +36,7 @@ export function StaffFilter({ staff, selectedId, onSelect }: StaffFilterProps) {
             role="tab"
             aria-selected={active}
             onClick={() => onSelect(member.id)}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D5F55] ${
+            className={`flex min-h-11 shrink-0 items-center gap-2 px-3 py-2 rounded-full text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D5F55] ${
               active ? "text-white" : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
             }`}
             style={active ? { backgroundColor: member.color ?? "#1D5F55" } : undefined}

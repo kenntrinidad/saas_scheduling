@@ -65,32 +65,32 @@ export default function StaffPage() {
   return (
     <div className="bg-[#FAFAF8]">
       <div className="max-w-4xl mx-auto">
-        <header className="px-6 pt-6 pb-4 flex flex-wrap items-center justify-between gap-3">
-          <h1 className="font-[Manrope] text-2xl font-bold text-neutral-900">Staff</h1>
+        <header className="px-3 pt-3 pb-4 flex flex-wrap items-center justify-between gap-3 sm:px-6 sm:pt-6">
+          <h1 className="hidden font-[Manrope] text-2xl font-bold text-neutral-900 md:block">Staff</h1>
           <button
             onClick={openAdd}
-            className="px-4 py-2 rounded-lg text-sm font-medium text-white bg-[#1D5F55] hover:bg-[#164A42] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D5F55]"
+            className="min-h-11 px-4 py-2 rounded-lg text-sm font-medium text-white bg-[#1D5F55] hover:bg-[#164A42] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D5F55]"
           >
             + Add staff
           </button>
         </header>
 
-        <div className="bg-white rounded-t-xl border border-neutral-200 mx-4">
-          <div className="flex flex-wrap items-center gap-3 px-6 py-3 border-b border-neutral-200">
+        <div className="bg-white rounded-xl border border-neutral-200 mx-1 sm:mx-4">
+          <div className="flex flex-col items-stretch gap-3 px-3 py-3 border-b border-neutral-200 sm:flex-row sm:flex-wrap sm:items-center sm:px-6">
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search staff…"
               aria-label="Search staff"
-              className="flex-1 min-w-[160px] rounded-lg border border-neutral-300 bg-white text-neutral-900 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1D5F55]"
+              className="min-h-11 w-full min-w-0 flex-1 rounded-lg border border-neutral-300 bg-white text-neutral-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1D5F55] sm:min-w-[160px]"
             />
             <div className="flex rounded-lg border border-neutral-200 p-0.5">
               {(["all", "active", "inactive"] as StatusFilter[]).map((s) => (
                 <button
                   key={s}
                   onClick={() => setStatus(s)}
-                  className={`px-3 py-1.5 rounded-md text-sm font-medium capitalize transition-colors ${
+                  className={`min-h-11 px-3 py-2 rounded-md text-sm font-medium capitalize transition-colors ${
                     status === s ? "bg-[#1D5F55] text-white" : "text-neutral-600 hover:bg-neutral-100"
                   }`}
                 >
