@@ -67,26 +67,26 @@ export default function LoginPage() {
               </svg>
             </div>
             <div className="min-w-0">
-              <p className="text-xl font-bold">Appointment and Scheduling System</p>
-              <p className="text-xs text-slate-400">by TND Graphics and Marketing Solutions</p>
+              <p className="text-xl font-bold">Appointment and Scheduling</p>
+              <p className="text-xs text-slate-400">Developed by Kenn Trinidad</p>
             </div>
           </div>
 
           <div className="relative my-10 max-w-lg lg:my-0">
-            <p className="mb-4 text-sm font-semibold uppercase text-emerald-400">Your business, on time</p>
+            <p className="mb-4 text-sm font-semibold uppercase text-emerald-400">Simple scheduling for your business.</p>
             <h1 className="text-4xl font-bold leading-tight sm:text-5xl">
-              Appointments. Staff. Payments. All-In-One.
+              Appointments. Staff. Payments. All in one place.
             </h1>
             <p className="mt-5 max-w-md text-base leading-7 text-slate-400">
-              Keep your calendar full, your team organized, and your revenue on track.
+              Keep your schedule organized and your business running smoothly.
             </p>
           </div>
 
           <div className="relative grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
             {[
-              { title: "Smart scheduling", description: "Keep availability organized" },
-              { title: "Secure access", description: "Protected business records" },
-              { title: "Always in sync", description: "One reliable source of truth" },
+              { title: "Easy scheduling", description: "Appointments organized." },
+              { title: "Team management", description: "Know who's available." },
+              { title: "Business overview", description: "Keep track of your activity." },
             ].map((feature) => (
               <div key={feature.title} className="border-l-2 border-emerald-400 pl-3">
                 <p className="text-sm font-semibold">{feature.title}</p>
@@ -102,7 +102,7 @@ export default function LoginPage() {
             <div className="mb-6">
               <p className="text-sm font-semibold text-blue-600">Welcome back</p>
               <h2 className="mt-2 text-3xl font-bold text-gray-900">Sign in to continue</h2>
-              <p className="mt-2 text-sm text-gray-500">Use your scheduler server account below.</p>
+              <p className="mt-2 text-sm text-gray-500">Ready to get things scheduled?</p>
             </div>
 
             {error && (
