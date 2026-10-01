@@ -69,7 +69,7 @@ export default function ClientsPage() {
     <div className="bg-[#FAFAF8]">
       <div className="max-w-4xl mx-auto">
         <header className="px-3 pt-3 pb-4 flex flex-wrap items-center justify-between gap-3 sm:px-6 sm:pt-6">
-          <h1 className="hidden font-[Manrope] text-2xl font-bold text-neutral-900 md:block">Clients</h1>
+          <h1 className="hidden text-2xl font-bold text-neutral-900 md:block">Clients</h1>
           <button
             onClick={openAdd}
             className="min-h-11 px-4 py-2 rounded-lg text-sm font-medium text-white bg-[#1D5F55] hover:bg-[#164A42] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D5F55]"

@@ -134,7 +134,7 @@ export default function AppointmentsPage() {
       <div className="max-w-6xl mx-auto">
         <header className="flex flex-col items-stretch gap-3 px-3 pt-3 pb-4 sm:px-6 sm:pt-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex flex-wrap items-center justify-between gap-2 sm:justify-start sm:gap-3">
-            <h1 className="hidden font-[Manrope] text-2xl font-bold text-neutral-900 md:block">Appointments</h1>
+            <h1 className="hidden text-2xl font-bold text-neutral-900 md:block">Appointments</h1>
             <div className="flex items-center gap-1 text-sm text-neutral-500">
               <button
                 onClick={() => shiftDate(-1)}

@@ -24,7 +24,7 @@ export function ClientFormModal({ open, onClose, onSaved, client }: ClientFormMo
 
   if (!open) return null;
 
-  const canSubmit = fullName.trim().length > 0 && email.trim().length > 0 && !submitting;
+  const canSubmit = fullName.trim().length > 0 && phone.trim().length > 0 && !submitting;
 
   async function handleSubmit() {
     if (!canSubmit) return;
@@ -34,7 +34,7 @@ export function ClientFormModal({ open, onClose, onSaved, client }: ClientFormMo
       const payload = {
         full_name: fullName.trim(),
         email: email.trim() || undefined,
-        contacts: phone.trim() || undefined,
+        contacts: phone.trim(),
       };
       if (isEdit && client) {
         await clientsApi.update(client.id, payload);
@@ -87,7 +87,7 @@ export function ClientFormModal({ open, onClose, onSaved, client }: ClientFormMo
             />
           </Field>
 
-          <Field label="Email">
+          <Field label="Email Address (optional)">
             <input
               type="email"
               value={email}
@@ -97,7 +97,7 @@ export function ClientFormModal({ open, onClose, onSaved, client }: ClientFormMo
             />
           </Field>
 
-          <Field label="Phone (optional)">
+          <Field label="Contact Number">
             <input
               type="tel"
               value={phone}

@@ -118,7 +118,7 @@ export default function DashboardPage() {
         </header>
 
         {summaryLoading ? (
-          <div className="flex items-center justify-center h-48 text-sm text-neutral-500">Loading…</div>
+          <div className="flex items-center justify-center h-48 text-sm text-neutral-500">Here's what's happening with your business today.…</div>
         ) : summaryError ? (
           <div className="flex flex-col items-center justify-center h-48 text-center gap-3">
             <p className="text-sm text-red-600">{summaryError}</p>
