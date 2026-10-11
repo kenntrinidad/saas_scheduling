@@ -1,8 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.database import engine, Base
-
-from app.models import user, staff, client, service, staff_schedule, appointment, payment  # noqa: F401
+from app.models import user, staff, client, service, staff_schedule, appointment, payment, booking_request  # noqa: F401
 from app.api.v1 import (
     auth,
     availability,
@@ -15,6 +14,8 @@ from app.api.v1 import (
     reports,
     health,
     dashboard,
+    booking_requests,
+    public_booking,
 )
 
 Base.metadata.create_all(bind=engine)
@@ -48,6 +49,8 @@ app.include_router(appointments.router, prefix="/api/v1", tags=["Appointments"])
 app.include_router(payments.router, prefix="/api/v1", tags=["Payments"])
 app.include_router(reports.router, prefix="/api/v1", tags=["Reports"])
 app.include_router(dashboard.router, prefix="/api/v1", tags=["Dashboard"])
+app.include_router(booking_requests.router, prefix="/api/v1", tags=["Booking Requests"])
+app.include_router(public_booking.router, prefix="/api/v1", tags=["Public Booking"])
 
 
 @app.get("/")
