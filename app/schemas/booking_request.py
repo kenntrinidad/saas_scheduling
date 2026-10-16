@@ -34,5 +34,5 @@ class BookingRequestOut(BaseModel):
 
 
 class BookingRequestApprove(BaseModel):
-    service_id: int
-    staff_id: int
+    service_id: Optional[int] = None
+    staff_id: Optional[int] = None

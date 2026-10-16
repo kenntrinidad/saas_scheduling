@@ -1,7 +1,9 @@
+# app/crud/booking_request.py
 from datetime import datetime, timezone
 from sqlalchemy.orm import Session
 from typing import Optional
 
+from app.models.client import Client
 from app.models.booking_request import BookingRequest, BookingRequestStatus
 from app.schemas.booking_request import BookingRequestCreate, BookingRequestOut
 
@@ -102,4 +104,53 @@ def reject_booking_request(
     db.commit()
     db.refresh(booking_request)
 
+    return booking_request
+
+def find_or_create_client_from_request(db: Session, req: BookingRequest) -> Client:
+    client = None
+
+    if req.email:
+        client = db.query(Client).filter(Client.email == req.email).first()
+
+    if client is None and req.phone:
+        client = (
+            db.query(Client)
+            .filter(Client.contacts == req.phone)
+            .first()
+        )
+
+    if client is None:
+        client = Client(
+            full_name=req.full_name,
+            contacts=req.phone,   # Client column is contacts
+            email=req.email,
+            notes=req.notes,
+        )
+        db.add(client)
+        db.flush()
+
+    return client
+
+
+def approve_booking_request(
+    db: Session,
+    booking_request: BookingRequest,
+    reviewed_by: int | None = None,
+) -> BookingRequest:
+    """Approve a pending request and ensure a Client exists."""
+    if booking_request.status != BookingRequestStatus.pending:
+        raise ValueError("Only pending requests can be approved")
+
+    client = find_or_create_client_from_request(db, booking_request)
+
+    # Only if your BookingRequest model has client_id column
+    if hasattr(booking_request, "client_id"):
+        booking_request.client_id = client.id
+
+    booking_request.status = BookingRequestStatus.approved
+    booking_request.reviewed_at = datetime.now(timezone.utc)
+    booking_request.reviewed_by = reviewed_by
+
+    db.commit()
+    db.refresh(booking_request)
     return booking_request

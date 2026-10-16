@@ -50,7 +50,6 @@ def pending_count(db: Session = Depends(get_db), current_user=Depends(get_curren
 @router.post("/booking-requests/{request_id}/approve", response_model=BookingRequestOut)
 def approve_booking_request(
     request_id: int,
-    decision: BookingRequestApprove,
     db: Session = Depends(get_db),
     current_user=Depends(get_current_owner),
 ):
@@ -60,20 +59,9 @@ def approve_booking_request(
     if req.status != BookingRequestStatus.pending:
         raise HTTPException(status_code=409, detail="This request has already been reviewed")
 
-    client = _find_or_create_client(db, req.full_name, req.phone, req.email)
-
-    try:
-        create_appointment(
-            db,
-            client_id=client.id,
-            staff_id=decision.staff_id,
-            appointment_date=req.preferred_time,
-            service_ids=[decision.service_id],
-        )
-    except ValueError as e:
-        raise HTTPException(status_code=409, detail=f"Could not approve: {e}")
-
+    # Directly approve the request without making an appointment schedule
     return booking_request_crud.approve_booking_request(db, req, reviewed_by=current_user.id)
+
 
 
 @router.post("/booking-requests/{request_id}/reject", response_model=BookingRequestOut)
@@ -89,3 +77,34 @@ def reject_booking_request(
         raise HTTPException(status_code=409, detail="This request has already been reviewed")
 
     return booking_request_crud.reject_booking_request(db, req, reviewed_by=current_user.id)
+
+@router.post("/booking-requests/{request_id}/approve", response_model=BookingRequestOut)
+def approve_booking_request(
+    request_id: int,
+    db: Session = Depends(get_db),
+    current_user=Depends(get_current_owner),
+):
+    req = booking_request_crud.get_booking_request(db, request_id)
+    if req is None:
+        raise HTTPException(status_code=404, detail="Booking request not found")
+    if req.status != BookingRequestStatus.pending:
+        raise HTTPException(status_code=409, detail="This request has already been reviewed")
+
+    # Create or reuse Client
+    client = _find_or_create_client(
+        db,
+        full_name=req.full_name,
+        phone=getattr(req, "phone", None),
+        email=getattr(req, "email", None),
+    )
+
+    if hasattr(req, "client_id"):
+        req.client_id = client.id
+    if req.notes and hasattr(client, "notes") and not client.notes:
+        client.notes = req.notes
+        db.add(client)
+
+    # Pass request_id (int), not req (object)
+    return booking_request_crud.approve_booking_request(
+        db, request_id, reviewed_by=current_user.id
+    )

@@ -25,7 +25,12 @@ def get_clients(
         )
     if tag:
         query = query.filter(Client.tags.ilike(f"%{tag}%"))
-    return query.offset(skip).limit(limit).all()
+    return (
+        query.order_by(Client.created_at.desc())
+        .offset(skip)
+        .limit(limit)
+        .all()
+    )
 
 
 def create_client(db: Session, client_in: ClientCreate) -> Client:

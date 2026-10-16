@@ -83,7 +83,7 @@ export default function PublicBookPage() {
               required
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
-              className="w-full rounded-lg border border-neutral-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1D5F55]"
+              className="w-full rounded-lg border border-neutral-300 px-3 py-2.5 text-sm text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#1D5F55]"
               placeholder="Your name"
             />
           </Field>
@@ -92,7 +92,7 @@ export default function PublicBookPage() {
             <input
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="w-full rounded-lg border border-neutral-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1D5F55]"
+              className="w-full rounded-lg border border-neutral-300 px-3 py-2.5 text-sm text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#1D5F55]"
               placeholder="09XXXXXXXXX"
             />
           </Field>
@@ -102,7 +102,7 @@ export default function PublicBookPage() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full rounded-lg border border-neutral-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1D5F55]"
+              className="w-full rounded-lg border border-neutral-300 px-3 py-2.5 text-sm text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#1D5F55]"
               placeholder="you@email.com"
             />
           </Field>
@@ -114,7 +114,7 @@ export default function PublicBookPage() {
                 required
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                className="w-full rounded-lg border border-neutral-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1D5F55]"
+                className="w-full rounded-lg border border-neutral-300 px-3 py-2.5 text-sm text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1D5F55]"
               />
             </Field>
             <Field label="Preferred time *">
@@ -123,7 +123,7 @@ export default function PublicBookPage() {
                 required
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
-                className="w-full rounded-lg border border-neutral-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1D5F55]"
+                className="w-full rounded-lg border border-neutral-300 px-3 py-2.5 text-sm text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1D5F55]"
               />
             </Field>
           </div>
@@ -133,7 +133,7 @@ export default function PublicBookPage() {
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               rows={4}
-              className="w-full rounded-lg border border-neutral-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1D5F55]"
+              className="w-full rounded-lg border border-neutral-300 px-3 py-2.5 text-sm text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#1D5F55]"
               placeholder="Service wanted, preferred staff, or other details"
             />
           </Field>

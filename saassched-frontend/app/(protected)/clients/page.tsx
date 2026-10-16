@@ -14,6 +14,11 @@ export default function ClientsPage() {
   const [search, setSearch] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [editingClient, setEditingClient] = useState<Client | null>(null);
+  const sorted = [...clients].sort((a, b) => {
+  const ta = a.created_at ? new Date(a.created_at).getTime() : 0;
+  const tb = b.created_at ? new Date(b.created_at).getTime() : 0;
+  return tb - ta; // latest first
+});
 
   function refresh() {
     setLoading(true);
