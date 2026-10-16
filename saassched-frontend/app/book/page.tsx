@@ -60,9 +60,9 @@ export default function PublicBookPage() {
   return (
     <div className="min-h-screen bg-[#FAFAF8] px-4 py-10">
       <div className="mx-auto w-full max-w-lg rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-8">
-        <h1 className="text-2xl font-bold text-neutral-900">Request an appointment</h1>
+        <h1 className="text-2xl font-bold text-neutral-900">Welcome! Schedule Your Appointment</h1>
         <p className="mt-2 text-sm text-neutral-500">
-          Submit your preferred time. The shop will confirm or suggest another slot.
+          Experience how your clients will easily book appointments with your clinic, spa, or salon in real time.
         </p>
 
         {success && (
@@ -145,6 +145,9 @@ export default function PublicBookPage() {
           >
             {submitting ? "Submitting…" : "Submit request"}
           </button>
+          <p className="mt-2 text-sm text-neutral-500">
+          Want this seamless booking system for your business? Contact us today to set up yours!
+        </p>
         </form>
       </div>
     </div>
