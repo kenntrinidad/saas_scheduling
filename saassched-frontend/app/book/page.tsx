@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Script from "next/script";
 
 const API_BASE =
   process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api/v1";
@@ -22,7 +23,6 @@ export default function PublicBookPage() {
     setError(null);
     setSuccess(false);
 
-    // Asia/Manila offset — same rule as appointments
     const preferred_time = `${date}T${time}:00+08:00`;
 
     try {
@@ -146,10 +146,19 @@ export default function PublicBookPage() {
             {submitting ? "Submitting…" : "Submit request"}
           </button>
           <p className="mt-2 text-sm text-neutral-500">
-          Want this seamless booking system for your business? Contact us today to set up yours!
-        </p>
+            Want this seamless booking system for your business? Contact us today to set up yours!
+          </p>
         </form>
       </div>
+
+      {/* External AI Chat Widget Script */}
+      <Script
+        src="https://ai-webtoolv2.onrender.com/static/chat-widget.js"
+        strategy="lazyOnload"
+        data-agent-id="be7a8bf3-e86f-45ee-8ecc-1edf07ef597d"
+        data-widget-token="085_FtzE3lcmSLTyWgMtMOBAMZR2gETBvI2GFQvyE44"
+        data-webhook-url="https://ai-webtoolv2.onrender.com/api/public/agents/be7a8bf3-e86f-45ee-8ecc-1edf07ef597d/chat"
+      />
     </div>
   );
 }
