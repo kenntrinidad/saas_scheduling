@@ -155,9 +155,9 @@ export default function PublicBookPage() {
       <script
         src="https://ai-webtoolv2.onrender.com/static/chat-widget.js"
         defer
-        data-agent-id="c3863181-013f-4382-b120-befd3b881293"
-        data-widget-token="hTwzgaPi3quTGBhz66x5pAZSXJqMNA2U2fkm1i4Ctvw"
-        data-webhook-url="https://ai-webtoolv2.onrender.com/api/public/agents/c3863181-013f-4382-b120-befd3b881293/chat"
+        data-agent-id="be7a8bf3-e86f-45ee-8ecc-1edf07ef597d"
+        data-widget-token="bK1NSUe0tXjcUlL75Qk1QCNfAfrWE9Cr7x8rwfVAaKs"
+        data-webhook-url="https://ai-webtoolv2.onrender.com/api/public/agents/be7a8bf3-e86f-45ee-8ecc-1edf07ef597d/chat"
       ></script>
     </div>
   );
